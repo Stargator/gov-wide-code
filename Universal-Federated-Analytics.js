@@ -146,7 +146,7 @@ function _isValidUANum(_UANumber) {
     var _regEx = /^ua\-([0-9]+)\-[0-9]+$/;
     var match = _UANumber.match(_regEx);
 
-    return (match != null && match.length > 0);
+    return (match !== null && match.length > 0);
 }
 
 /*
@@ -195,30 +195,30 @@ function _updateConfig() {
         _value = _keyValuePair.split('=')[1];
 
         switch (_key) {
-      case 'pua':
-          var _UAList = _value.split(',');
-          for (var j = 0; j < _UAList.length; j++)
-              if (_isValidUANum(_UAList[j]))
-                  oCONFIG.GWT_UAID.push(_UAList[j].toUpperCase());
-          break;
-      case 'agency':
-          oCONFIG.AGENCY = _value.toUpperCase();
-          break;
-      case 'subagency':
-          oCONFIG.SUB_AGENCY = _value.toUpperCase();
-          break;
-      case 'sitetopic':
-          oCONFIG.SITE_TOPIC = _value;
-          break;
-      case 'siteplatform':
-          oCONFIG.SITE_PLATFORM = _value;
-          break;
-      case 'parallelcd':
-          _value = _cleanBooleanParam(_value);
-          if (true === _value || false === _value)
-              oCONFIG.USE_PARALLEL_CUSTOM_DIMENSIONS = _value;
-          break;
-      case 'palagencydim':
+            case 'pua':
+                var _UAList = _value.split(',');
+                for (var j = 0; j < _UAList.length; j++)
+                    if (_isValidUANum(_UAList[j]))
+                        oCONFIG.GWT_UAID.push(_UAList[j].toUpperCase());
+                break;
+            case 'agency':
+                oCONFIG.AGENCY = _value.toUpperCase();
+                break;
+            case 'subagency':
+                oCONFIG.SUB_AGENCY = _value.toUpperCase();
+                break;
+            case 'sitetopic':
+                oCONFIG.SITE_TOPIC = _value;
+                break;
+            case 'siteplatform':
+                oCONFIG.SITE_PLATFORM = _value;
+                break;
+            case 'parallelcd':
+                _value = _cleanBooleanParam(_value);
+                if (true === _value || false === _value)
+                    oCONFIG.USE_PARALLEL_CUSTOM_DIMENSIONS = _value;
+                break;
+            case 'palagencydim':
                 _value = _cleanDimensionValue(_value);
 				if (''!==_value)
 					oCONFIG.PARALLEL_AGENCY_CUSTOM_DIMENSION_SLOT = _value;
@@ -337,7 +337,7 @@ function _sendCustomMetrics(_slotNums, _val)
 {
     if (_slotNums.length > 0 && _val !== '' && _val !== undefined)
 	{
-		if (tObjectCheck != window['GoogleAnalyticsObject'])
+		if (tObjectCheck !== window['GoogleAnalyticsObject'])
 		{
 			createTracker(false);
 		}
@@ -384,7 +384,7 @@ function _sendEvent(_cat, _act, _lbl, _val, _nonInteraction, interactionType) {
           }
         }
         window[window['GoogleAnalyticsObject']](oCONFIG.PUA_NAME + i + '.set', interactionSlot, interactionType);
-        window[window['GoogleAnalyticsObject']](oCONFIG.PUA_NAME + i + '.send', 'event', _cat, _act, ((_lbl !== undefined) ? _lbl : ''), ((_val !== '' || !isNaN(_val) || _val !== undefined) ? parseInt(_val) : 0), { 'nonInteraction': _nonInteraction});
+        window[window['GoogleAnalyticsObject']](oCONFIG.PUA_NAME + i + '.send', 'event', _cat, _act, ((_lbl !== undefined) ? _lbl : ''), ((_val !== '' || !isNaN(_val) || _val !== undefined) ? parseInt(_val) : 0), {'nonInteraction': _nonInteraction});
 			}
 			catch(err)
 			{
@@ -454,7 +454,7 @@ function gas(_command, _hitType, _param1, _param2, _param3, _param4, _param5)
 			{
 			}
 		}
-		else if (_hitType.toLowerCase().indexOf('dimension') != -1)
+		else if (_hitType.toLowerCase().indexOf('dimension') !== -1)
 		{
 			try
 			{
@@ -485,7 +485,7 @@ function gas(_command, _hitType, _param1, _param2, _param3, _param4, _param5)
 			{
 			}
 		}
-		else if (_hitType.toLowerCase().indexOf('metric') != -1)
+		else if (_hitType.toLowerCase().indexOf('metric') !== -1)
 		{
 			try
 			{
@@ -537,7 +537,7 @@ function _URIHandler(pageName) {
 		var refer = document.referrer.replace(/https?\:\/\//,'').split('/')[0].replace('www.', '');
 		if (oCONFIG.SUBDOMAIN_BASED)
 		{
-			if(refer.indexOf(oCONFIG.COOKIE_DOMAIN) != -1) {
+			if(refer.indexOf(oCONFIG.COOKIE_DOMAIN) !== -1) {
 				return true;}
 				else{ return false;}
 
